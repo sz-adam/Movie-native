@@ -46,7 +46,7 @@ return(
 
     <Stack.Navigator >
     <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false }}/>
-      <Stack.Screen name="Movie" component={MovieScreen} options={{title:false}}/>
+      <Stack.Screen name="MovieDetails" component={MovieScreen} options={{title:false}}/>
     </Stack.Navigator>
 
 )
