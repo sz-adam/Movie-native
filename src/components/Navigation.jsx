@@ -1,11 +1,15 @@
 import { createDrawerNavigator } from "@react-navigation/drawer";
+import { createStackNavigator } from '@react-navigation/stack';
 import HomeScreen from "../pages/HomeScreen";
 import FavoriteScreen from "../pages/FavoriteScreen";
 import { NavigationContainer } from "@react-navigation/native";
 import { Text } from "react-native";
 import { GlobalStyles } from "../constans/stlyes";
+import MovieScreen from "../pages/MovieScreen";
 
 const Drawer = createDrawerNavigator();
+const Stack = createStackNavigator();
+
 
 const CustomHeaderMovieTitle = () => {
   return (
@@ -37,6 +41,17 @@ const CustomHeaderFavoritesTitle = () => {
   );
 };
 
+const StackNavigator=()=>{
+return(
+
+    <Stack.Navigator >
+    <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false }}/>
+      <Stack.Screen name="Movie" component={MovieScreen} options={{title:false}}/>
+    </Stack.Navigator>
+
+)
+}
+
 const Navigation = () => {
   return (
     <NavigationContainer>
@@ -58,7 +73,7 @@ const Navigation = () => {
       >
         <Drawer.Screen
           name="Movie"
-          component={HomeScreen}
+          component={StackNavigator}
           options={{
             headerTitle: (props) => <CustomHeaderMovieTitle {...props} />,
           }}
