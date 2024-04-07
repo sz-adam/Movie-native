@@ -57,14 +57,26 @@ const MovieCarousel = ({ data }) => {
               style={{ width: PAGE_WIDTH * 0.75 }}
             >
               <Image
-                source={item.imageUrl}
+                source={{ uri: item.Poster }}
                 className="w-full aspect-square "
                 style={{ height: undefined }}
               />
               {/**<Text className="absolute right-3 top-1"><Icon name="hearto" size={30} /> <Icon name="heart" color={GlobalStyles.colors.red500} size={30} /> </Text> */}
-              <Text className="absolute bottom-5 left-5 color-white">
-                Lorem ipsum dolor sit amet.
-              </Text>
+              <View
+                className="w-full absolute bottom-0 p-3 "
+                style={{
+                  backgroundColor: GlobalStyles.colors.primary50,
+                  opacity: 0.7,
+                }}
+              >
+                <View>
+                  <Text
+                    className="font-bold color-black text-center"                   
+                  >
+                    {item.Title}
+                  </Text>
+                </View>
+              </View>
             </View>
           </TouchableOpacity>
         )}
