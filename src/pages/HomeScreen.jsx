@@ -1,4 +1,4 @@
-import { View} from "react-native";
+import { View } from "react-native";
 import React, { useEffect, useState } from "react";
 import MovieCarousel from "../components/MovieCarousel";
 import { GlobalStyles } from "../constans/stlyes";
@@ -51,7 +51,7 @@ const HomeScreen = () => {
         const filteredData = combinedData.filter(
           (item) => item.Poster !== "N/A"
         );
-        setData(filteredData);
+        setData([ ...data, ...filteredData,]);
       } catch (error) {
         console.error("Error fetching data:", error);
       }

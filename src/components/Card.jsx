@@ -1,4 +1,4 @@
-import { View, Text, FlatList, TouchableOpacity, Image } from "react-native";
+import { View, Text, FlatList, TouchableOpacity, Image, ActivityIndicator } from "react-native";
 import React from "react";
 import { GlobalStyles } from "../constans/stlyes";
 import { useNavigation } from "@react-navigation/native";
@@ -7,8 +7,16 @@ const Card = ({ data,page,setPage }) => {
   
 
   const handleEndReached = () => {
-    setPage((prevPage) => prevPage + 1);   
+    setPage(page + 1);   
   };
+
+  const rendelLoader=()=>{
+    return(
+      <View>
+        <ActivityIndicator size="large" color="#aaa"/>
+      </View>
+    )
+  }
   
   return (
     <FlatList
@@ -17,7 +25,8 @@ const Card = ({ data,page,setPage }) => {
       keyExtractor={(item) => item.imdbID}
       numColumns={2}
       onEndReached={handleEndReached}
-      onEndReachedThreshold={0.2}   
+      onEndReachedThreshold={0}  
+      ListFooterComponent={rendelLoader} 
     />
   );
 };
