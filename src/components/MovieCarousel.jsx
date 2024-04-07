@@ -21,7 +21,7 @@ const MovieCarousel = ({ data }) => {
   };
 
   return (
-    <View className="mt-0 flex-1">
+    <View className="mt-0 h-[50%]">
       <Text
         className="ml-3 mt-2 text-2xl font-bold"
         style={{ color: GlobalStyles.colors.red500 }}
@@ -70,9 +70,7 @@ const MovieCarousel = ({ data }) => {
                 }}
               >
                 <View>
-                  <Text
-                    className="font-bold color-black text-center"                   
-                  >
+                  <Text className="font-bold color-black text-center">
                     {item.Title}
                   </Text>
                 </View>
