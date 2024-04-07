@@ -1,73 +1,74 @@
+import { useState } from "react";
+import { View, Text, Dimensions, Image, TouchableOpacity } from "react-native";
+import Animated, { useSharedValue } from "react-native-reanimated";
+import Carousel from "react-native-reanimated-carousel";
+import Icon from "react-native-vector-icons/AntDesign";
+
 import { useNavigation } from "@react-navigation/native";
-import React, { useRef } from "react";
-import {
-  View,
-  Image,
-  Text,
-  useWindowDimensions,
-  ScrollView,
-  TouchableOpacity,
-} from "react-native";
 import { GlobalStyles } from "../constans/stlyes";
 
+const PAGE_WIDTH = Dimensions.get("window").width;
+
 const MovieCarousel = ({ data }) => {
-  const { width } = useWindowDimensions();
-  const SIZE = width * 0.6;
-  const scrollViewRef = useRef();
+  const [autoPlay, setAutoPlay] = useState(true);
+  const [pagingEnabled, setPagingEnabled] = useState(true);
+  const [snapEnabled, setSnapEnabled] = useState(true);
+  const progressValue = useSharedValue(0);
   const navigation = useNavigation();
-
-  const handleScroll = (event) => {
-    const contentOffsetX = event.nativeEvent.contentOffset.x;
-    const contentSizeWidth = event.nativeEvent.contentSize.width;
-    const layoutMeasurementWidth = event.nativeEvent.layoutMeasurement.width;
-
-    // Ha elérjük a ScrollView végét, ugrunk vissza az elejére
-    if (contentOffsetX + layoutMeasurementWidth >= contentSizeWidth) {
-      scrollViewRef.current.scrollTo({ x: 0, animated: true });
-    }
-  };
 
   const handleClick = (item) => {
     navigation.navigate("MovieDetails", item);
   };
 
   return (
-    <View>
+    <View className="mt-0 flex-1">
       <Text
-        className="text-center text-2xl font-bold"
+        className="ml-3 mt-2 text-2xl font-bold"
         style={{ color: GlobalStyles.colors.red500 }}
       >
         N<Text style={{ color: GlobalStyles.colors.primary50 }}>ewest</Text>
       </Text>
-      <ScrollView
-        ref={scrollViewRef}
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        bounces={false}
-        scrollEventThrottle={16}
-        snapToInterval={SIZE}
-        decelerationRate="fast"
-        onScroll={handleScroll}
-      >
-        {data.map((item) => (
-          <View key={item.id} style={{ width: SIZE * 0.9 }}>
-            <TouchableOpacity onPress={() => handleClick(item)}>
-              <View className="rounded-3xl overflow-hidden m-2">
-                <Image
-                  source={item.imageUrl}
-                  className="w-full aspect-square "
-                  style={{ height: undefined }}
-                />
-                <Text className="absolute right-3 top-1">O</Text>
-                <Text className="absolute left-2 bottom-5 color-white">
-                  Lorem ipsum dolor sit amet.
-                </Text>
-              </View>
-            </TouchableOpacity>
-          </View>
-        ))}
-        <View style={{ width: SIZE * 0.7 }}></View>
-      </ScrollView>
+      <Carousel
+        width={PAGE_WIDTH}
+        height={PAGE_WIDTH}
+        vertical={false}
+        loop
+        pagingEnabled={pagingEnabled}
+        snapEnabled={snapEnabled}
+        autoPlay={autoPlay}
+        autoPlayInterval={1500}
+        onProgressChange={(_, absoluteProgress) =>
+          (progressValue.value = absoluteProgress)
+        }
+        mode="parallax"
+        modeConfig={{
+          parallaxScrollingScale: 0.9,
+          parallaxScrollingOffset: 100,
+        }}
+        data={data}
+        scrollAnimationDuration={1000}
+        renderItem={({ item }) => (
+          <TouchableOpacity
+            onPress={() => handleClick(item)}
+            className="flex items-center"
+          >
+            <View
+              className="rounded-3xl overflow-hidden m-1 "
+              style={{ width: PAGE_WIDTH * 0.75 }}
+            >
+              <Image
+                source={item.imageUrl}
+                className="w-full aspect-square "
+                style={{ height: undefined }}
+              />
+              {/**<Text className="absolute right-3 top-1"><Icon name="hearto" size={30} /> <Icon name="heart" color={GlobalStyles.colors.red500} size={30} /> </Text> */}
+              <Text className="absolute bottom-5 left-5 color-white">
+                Lorem ipsum dolor sit amet.
+              </Text>
+            </View>
+          </TouchableOpacity>
+        )}
+      />
     </View>
   );
 };
