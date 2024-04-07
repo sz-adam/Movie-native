@@ -6,6 +6,7 @@ import axios from "axios";
 
 import { API_URL } from "@env";
 import { API_KEY } from "@env";
+import MovieList from "../components/MovieList";
 
 const HomeScreen = () => {
   const [data, setData] = useState([]);
@@ -38,7 +39,10 @@ const HomeScreen = () => {
       className="flex-1 items-center justify-center"
       style={{ backgroundColor: GlobalStyles.colors.gray500 }}
     >
-      <MovieCarousel data={data} />
+      <View className="flex-1">
+        <MovieCarousel data={data} />
+        <MovieList />
+      </View>
     </View>
   );
 };
