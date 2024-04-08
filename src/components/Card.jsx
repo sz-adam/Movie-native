@@ -35,7 +35,7 @@ const DataCard = ({ item }) => {
   const navigation = useNavigation();
 
   const handleClick = (item) => {
-    navigation.navigate("MovieDetails", item);
+    navigation.navigate("MovieDetails", {item:item});
   };
 
   return (
