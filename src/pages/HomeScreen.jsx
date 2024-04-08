@@ -14,6 +14,8 @@ const HomeScreen = () => {
   const [data, setData] = useState([]);
   const year = new Date().getFullYear();
   const [page, setPage] = useState(1);
+  const [category, setCategory] = useState("all");
+
   /**carousel endpoint */
   useEffect(() => {
     const fetchData = async () => {
@@ -41,24 +43,36 @@ const HomeScreen = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const movies = await axios.get(
-          `${API_URL}${API_KEY}&s=movie&page=${page}`
-        );
-        const series = await axios.get(
-          `${API_URL}${API_KEY}&s=series&page=${page}`
-        );
-        const combinedData = [...movies.data.Search, ...series.data.Search];
-        const filteredData = combinedData.filter(
-          (item) => item.Poster !== "N/A"
-        );
-        setData([ ...data, ...filteredData,]);
+        let movies, series;
+        if (category === "movie") {
+          movies = await axios.get(`${API_URL}${API_KEY}&s=movie&page=${page}`);
+          setData([...data, ...movies.data.Search]);
+        } else if (category === "series") {
+          series = await axios.get(
+            `${API_URL}${API_KEY}&s=series&page=${page}`
+          );
+          setData([...data, ...series.data.Search]);
+        } else {
+          movies = await axios.get(`${API_URL}${API_KEY}&s=movie&page=${page}`);
+          series = await axios.get(
+            `${API_URL}${API_KEY}&s=series&page=${page}`
+          );
+          const combinedData = [...movies.data.Search, ...series.data.Search];
+          setData([...data, ...combinedData]);
+        }
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     };
 
     fetchData();
-  }, [page]);
+  }, [page, category]);
+
+  const handleCategoryChange = (category) => {
+    setCategory(category);
+    setData([]);
+    setPage(1);
+  };
 
   return (
     <View
@@ -67,7 +81,10 @@ const HomeScreen = () => {
     >
       <View className="flex-1">
         <MovieCarousel data={yearData} />
-        <MovieList />
+        <MovieList
+          handleCategoryChange={handleCategoryChange}
+          category={category}
+        />
         <Card data={data} page={page} setPage={setPage} />
       </View>
     </View>
