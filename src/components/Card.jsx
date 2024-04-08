@@ -1,23 +1,28 @@
-import { View, Text, FlatList, TouchableOpacity, Image, ActivityIndicator } from "react-native";
+import {
+  View,
+  Text,
+  FlatList,
+  TouchableOpacity,
+  Image,
+  ActivityIndicator,
+} from "react-native";
 import React from "react";
 import { GlobalStyles } from "../constans/stlyes";
 import { useNavigation } from "@react-navigation/native";
 
-const Card = ({ data,page,setPage }) => {
-  
-
+const Card = ({ data, page, setPage }) => {
   const handleEndReached = () => {
-    setPage(page + 1);   
+    setPage(page + 1);
   };
 
-  const rendelLoader=()=>{
-    return(
+  const rendelLoader = () => {
+    return (
       <View>
-        <ActivityIndicator size="large" color="#aaa"/>
+        <ActivityIndicator size="large" color="#aaa" />
       </View>
-    )
-  }
-  
+    );
+  };
+
   return (
     <FlatList
       data={data}
@@ -25,8 +30,8 @@ const Card = ({ data,page,setPage }) => {
       keyExtractor={(item) => item.imdbID}
       numColumns={2}
       onEndReached={handleEndReached}
-      onEndReachedThreshold={0}  
-      ListFooterComponent={rendelLoader} 
+      onEndReachedThreshold={0}
+      ListFooterComponent={rendelLoader}
     />
   );
 };
@@ -35,7 +40,7 @@ const DataCard = ({ item }) => {
   const navigation = useNavigation();
 
   const handleClick = (item) => {
-    navigation.navigate("MovieDetails", {item:item});
+    navigation.navigate("MovieDetails", { item: item });
   };
 
   return (
