@@ -1,5 +1,5 @@
 import { createDrawerNavigator } from "@react-navigation/drawer";
-import { createStackNavigator } from '@react-navigation/stack';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import HomeScreen from "../pages/HomeScreen";
 import FavoriteScreen from "../pages/FavoriteScreen";
 import { NavigationContainer } from "@react-navigation/native";
@@ -8,7 +8,7 @@ import { GlobalStyles } from "../constans/stlyes";
 import MovieScreen from "../pages/MovieScreen";
 
 const Drawer = createDrawerNavigator();
-const Stack = createStackNavigator();
+const Stack = createNativeStackNavigator();
 
 
 const CustomHeaderMovieTitle = () => {
