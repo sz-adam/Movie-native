@@ -6,6 +6,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { Text } from "react-native";
 import { GlobalStyles } from "../constans/stlyes";
 import MovieScreen from "../pages/MovieScreen";
+import Search from "../pages/Search";
 
 const Drawer = createDrawerNavigator();
 const Stack = createNativeStackNavigator();
@@ -47,6 +48,7 @@ return(
     <Stack.Navigator >
     <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false }}/>
       <Stack.Screen name="MovieDetails" component={MovieScreen} options={{ headerShown: false }}/>
+      <Stack.Screen name="Search" component={Search} options={{ headerShown: false }}/>
     </Stack.Navigator>
 
 )
