@@ -1,12 +1,14 @@
-import { View, Text, TouchableOpacity } from "react-native";
-import React from "react";
+import { View, Text, TouchableOpacity, FlatList } from "react-native";
+import React, { useState } from "react";
 import Icon from "react-native-vector-icons/Ionicons";
 import { useNavigation } from "@react-navigation/native";
 import { GlobalStyles } from "../constans/stlyes";
 import SearchInput from "../components/SearchInput";
+import DataCard from "../components/DataCard";
 
 const Search = () => {
   const navigation = useNavigation();
+  const [searchData, setSearchData] = useState([]);
 
   return (
     <View
@@ -31,7 +33,14 @@ const Search = () => {
           S<Text style={{ color: GlobalStyles.colors.primary50 }}>earch</Text>
         </Text>
       </View>
-      <SearchInput />
+      <SearchInput setSearchData={setSearchData} />
+      <FlatList
+        data={searchData}
+        renderItem={({ item }) => <DataCard item={item} />}
+        keyExtractor={(item) => item.imdbID}
+        numColumns={2}
+        onEndReachedThreshold={0}
+      />
     </View>
   );
 };

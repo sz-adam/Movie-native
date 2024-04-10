@@ -1,4 +1,4 @@
-import { View, Text, TextInput } from "react-native";
+import { View, TextInput } from "react-native";
 import React, { useEffect, useState } from "react";
 import { GlobalStyles } from "../constans/stlyes";
 import Icon from "react-native-vector-icons/AntDesign";
@@ -7,10 +7,8 @@ import axios from "axios";
 import { API_URL } from "@env";
 import { API_KEY } from "@env";
 
-const SearchInput = () => {
+const SearchInput = ({ setSearchData }) => {
   const [search, setSearch] = useState("");
-  const [searchData, setSearchData] = useState([]);
-  console.log(search);
 
   const handleInputChange = (text) => {
     setSearch(text);
@@ -20,7 +18,7 @@ const SearchInput = () => {
     const fetchData = async () => {
       try {
         const searchItem = await axios.get(`${API_URL}${API_KEY}&s=${search}`);
-        setSearchData(searchItem);
+        setSearchData(searchItem.data.Search);
       } catch (error) {
         console.error("Error fetching data:", error);
       }

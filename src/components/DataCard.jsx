@@ -4,8 +4,8 @@ import { GlobalStyles } from "../constans/stlyes";
 import { useNavigation } from "@react-navigation/native";
 import Animated from "react-native-reanimated";
 
-const DataCard = ({item}) => {
-    const navigation = useNavigation();
+const DataCard = ({ item }) => {
+  const navigation = useNavigation();
 
   return (
     <TouchableOpacity
