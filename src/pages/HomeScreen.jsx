@@ -1,4 +1,4 @@
-import { View } from "react-native";
+import { Text, View } from "react-native";
 import React, { useEffect, useState } from "react";
 import MovieCarousel from "../components/MovieCarousel";
 import { GlobalStyles } from "../constans/stlyes";
@@ -76,9 +76,15 @@ const HomeScreen = () => {
 
   return (
     <View
-      className="flex-1 items-center justify-center"
+      className="flex-1 "
       style={{ backgroundColor: GlobalStyles.colors.gray500 }}
     >
+        <Text
+        className="ml-3 mt-2 text-2xl font-bold"
+        style={{ color: GlobalStyles.colors.red500 }}
+      >
+        N<Text style={{ color: GlobalStyles.colors.primary50 }}>ewest</Text>
+      </Text>
       <View className="flex-1">
         <MovieCarousel data={yearData} />
         <MovieList

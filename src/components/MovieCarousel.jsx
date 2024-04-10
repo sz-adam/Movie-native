@@ -22,12 +22,7 @@ const MovieCarousel = ({ data }) => {
 
   return (
     <View className="mt-0 h-[50%]">
-      <Text
-        className="ml-3 mt-2 text-2xl font-bold"
-        style={{ color: GlobalStyles.colors.red500 }}
-      >
-        N<Text style={{ color: GlobalStyles.colors.primary50 }}>ewest</Text>
-      </Text>
+    
       <Carousel
         width={PAGE_WIDTH}
         height={PAGE_WIDTH}
