@@ -1,15 +1,6 @@
-import {
-  View,
-  Text,
-  FlatList,
-  TouchableOpacity,
-  Image,
-  ActivityIndicator,
-} from "react-native";
+import { View, FlatList, ActivityIndicator } from "react-native";
 import React from "react";
-import { GlobalStyles } from "../constans/stlyes";
-import { useNavigation } from "@react-navigation/native";
-import Animated from "react-native-reanimated"
+
 import DataCard from "./DataCard";
 
 const Card = ({ data, page, setPage }) => {
@@ -37,6 +28,5 @@ const Card = ({ data, page, setPage }) => {
     />
   );
 };
-
 
 export default Card;
