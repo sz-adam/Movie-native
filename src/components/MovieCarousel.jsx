@@ -5,7 +5,7 @@ import Carousel from "react-native-reanimated-carousel";
 import Icon from "react-native-vector-icons/AntDesign";
 
 import { useNavigation } from "@react-navigation/native";
-import { GlobalStyles } from "../constans/stlyes";
+import { GlobalStyles } from "../constans/styles";
 
 const PAGE_WIDTH = Dimensions.get("window").width;
 

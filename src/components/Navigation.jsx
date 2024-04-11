@@ -4,9 +4,9 @@ import HomeScreen from "../pages/HomeScreen";
 import FavoriteScreen from "../pages/FavoriteScreen";
 import { NavigationContainer } from "@react-navigation/native";
 import { Text } from "react-native";
-import { GlobalStyles } from "../constans/stlyes";
+import { GlobalStyles } from "../constans/styles";
 import MovieScreen from "../pages/MovieScreen";
-import Search from "../pages/Search";
+import SearchScreen from "../pages/SearchScreen";
 
 const Drawer = createDrawerNavigator();
 const Stack = createNativeStackNavigator();
@@ -48,7 +48,7 @@ return(
     <Stack.Navigator >
     <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false }}/>
       <Stack.Screen name="MovieDetails" component={MovieScreen} options={{ headerShown: false }}/>
-      <Stack.Screen name="Search" component={Search} options={{ headerShown: false }}/>
+      <Stack.Screen name="Search" component={SearchScreen} options={{ headerShown: false }}/>
     </Stack.Navigator>
 
 )

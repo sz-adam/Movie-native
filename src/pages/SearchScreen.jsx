@@ -2,7 +2,7 @@ import { View, Text, TouchableOpacity, FlatList } from "react-native";
 import React, { useState } from "react";
 import Icon from "react-native-vector-icons/Ionicons";
 import { useNavigation } from "@react-navigation/native";
-import { GlobalStyles } from "../constans/stlyes";
+import { GlobalStyles } from "../constans/styles";
 import SearchInput from "../components/SearchInput";
 import DataCard from "../components/DataCard";
 

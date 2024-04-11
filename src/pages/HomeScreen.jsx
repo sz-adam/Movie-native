@@ -1,6 +1,6 @@
 import { Text, TouchableOpacity, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { GlobalStyles } from "../constans/stlyes";
+import { GlobalStyles } from "../constans/styles";
 
 import React, { useEffect, useState } from "react";
 import MovieCarousel from "../components/MovieCarousel";

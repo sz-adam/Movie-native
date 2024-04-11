@@ -1,6 +1,6 @@
 import { View, Text, FlatList, TouchableOpacity, Image } from "react-native";
 import React from "react";
-import { GlobalStyles } from "../constans/stlyes";
+import { GlobalStyles } from "../constans/styles";
 import { useNavigation } from "@react-navigation/native";
 import Animated from "react-native-reanimated";
 

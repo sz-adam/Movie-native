@@ -1,6 +1,6 @@
 import { View, TextInput } from "react-native";
 import React, { useEffect, useState } from "react";
-import { GlobalStyles } from "../constans/stlyes";
+import { GlobalStyles } from "../constans/styles";
 import Icon from "react-native-vector-icons/AntDesign";
 import axios from "axios";
 

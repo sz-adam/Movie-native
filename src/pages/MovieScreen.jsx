@@ -12,7 +12,7 @@ import Icon from "react-native-vector-icons/AntDesign";
 
 import { API_URL } from "@env";
 import { API_KEY } from "@env";
-import { GlobalStyles } from "../constans/stlyes";
+import { GlobalStyles } from "../constans/styles";
 
 export default function MovieScreen({ route }) {
   const { item } = route.params;
