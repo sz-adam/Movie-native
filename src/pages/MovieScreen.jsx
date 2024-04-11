@@ -39,7 +39,7 @@ export default function MovieScreen({ route }) {
       className="flex-1"
       style={{ backgroundColor: GlobalStyles.colors.gray500 }}
     >
-      <Header />
+      <Header dataDetails={dataDetails}/>
       <Image
         sharedTransitionTag="sharedTag"
         style={{ width: width, height: width }}

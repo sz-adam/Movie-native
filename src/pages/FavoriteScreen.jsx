@@ -1,12 +1,24 @@
-import { View, Text } from 'react-native'
-import React from 'react'
+import React from "react";
+import { View, FlatList } from "react-native";
+import { useFavoritesContext } from "../context/FavoritesContext";
+import DataCard from "../components/DataCard";
+import { GlobalStyles } from "../constans/styles";
 
 const FavoriteScreen = () => {
-  return (
-    <View>
-      <Text>FavoriteScreen</Text>
-    </View>
-  )
-}
+  const { favorites } = useFavoritesContext();
+  console.log(favorites);
 
-export default FavoriteScreen
+  return (
+    <View className="flex-1"
+      style={{ backgroundColor: GlobalStyles.colors.gray500 }}>
+      <FlatList
+        data={favorites}
+        renderItem={({ item }) => <DataCard item={item} />}
+        keyExtractor={(item) => item.imdbID}
+        numColumns={2}
+      />
+    </View>
+  );
+};
+
+export default FavoriteScreen;
