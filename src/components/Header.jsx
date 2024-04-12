@@ -7,7 +7,7 @@ import { useFavoritesContext } from "../context/FavoritesContext";
 
 const Header = ({ dataDetails }) => {
   const navigation = useNavigation();
-  const { addFavorite } = useFavoritesContext();
+  const { addFavorite, isFavorite, removeFavorite } = useFavoritesContext();
 
   const handleAddFavorite = () => {
     addFavorite(dataDetails);
@@ -19,7 +19,18 @@ const Header = ({ dataDetails }) => {
         <Icon name="arrow-back" color={GlobalStyles.colors.blue500} size={30} />
       </TouchableOpacity>
       <TouchableOpacity onPress={handleAddFavorite}>
-        <Icon name="heart" color={GlobalStyles.colors.red500} size={30} />
+        <Icon
+          name={isFavorite(dataDetails.imdbID) ? "heart" : "heart-outline"}
+          size={36}
+          style={{ color: "red" }}
+          onPress={() => {
+            if (isFavorite(dataDetails.imdbID)) {
+              removeFavorite(dataDetails.imdbID);
+            } else {
+              addFavorite(dataDetails);
+            }
+          }}
+        />
       </TouchableOpacity>
     </View>
   );

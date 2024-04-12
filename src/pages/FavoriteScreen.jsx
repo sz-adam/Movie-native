@@ -6,11 +6,11 @@ import { GlobalStyles } from "../constans/styles";
 
 const FavoriteScreen = () => {
   const { favorites } = useFavoritesContext();
-  console.log(favorites);
-
   return (
-    <View className="flex-1"
-      style={{ backgroundColor: GlobalStyles.colors.gray500 }}>
+    <View
+      className="flex-1"
+      style={{ backgroundColor: GlobalStyles.colors.gray500 }}
+    >
       <FlatList
         data={favorites}
         renderItem={({ item }) => <DataCard item={item} />}
