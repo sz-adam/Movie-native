@@ -18,8 +18,17 @@ const FavoritesContext = createContext();
 export const FavoritesProvider = ({ children }) => {
   const [favorites, setFavorites] = useState([]);
 
-  //notification settings
-  function scheduleNotificationHandler({ item }) {
+  async function scheduleNotificationHandler({ item }) {
+    // are there notifications
+    const { status: existingStatus } =
+      await Notifications.getPermissionsAsync();
+    let finalStatus = existingStatus;
+    if (existingStatus !== "granted") {
+      // permission request/engedély kérés
+      const { status } = await Notifications.requestPermissionsAsync();
+      finalStatus = status;
+    }
+    //notification settings
     Notifications.scheduleNotificationAsync({
       content: {
         title: "Added to Favorites",
