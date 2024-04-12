@@ -1,5 +1,15 @@
 import React, { createContext, useState, useContext, useEffect } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import * as Notifications from "expo-notifications";
+
+//Display notification
+Notifications.setNotificationHandler({
+  handleNotification: async () => ({
+    shouldShowAlert: true,
+    shouldPlaySound: true,
+    shouldSetBadge: true,
+  }),
+});
 
 // create FavoritesContext
 const FavoritesContext = createContext();
@@ -7,6 +17,19 @@ const FavoritesContext = createContext();
 // FavoritesProvider  state, action
 export const FavoritesProvider = ({ children }) => {
   const [favorites, setFavorites] = useState([]);
+
+  //notification settings
+  function scheduleNotificationHandler({ item }) {
+    Notifications.scheduleNotificationAsync({
+      content: {
+        title: "Added to Favorites",
+        body: `${item.Title}`,
+      },
+      trigger: {
+        seconds: 1,
+      },
+    });
+  }
 
   const isFavorite = (movieimdbID) =>
     favorites.some((movie) => movie.imdbID === movieimdbID);
@@ -20,6 +43,7 @@ export const FavoritesProvider = ({ children }) => {
         "favorites",
         JSON.stringify([item, ...favorites])
       );
+      scheduleNotificationHandler({ item });
     } catch (error) {
       console.error("Error:", error);
     }
