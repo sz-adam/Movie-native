@@ -8,6 +8,7 @@ import { GlobalStyles } from "../constans/styles";
 import MovieScreen from "../pages/MovieScreen";
 import SearchScreen from "../pages/SearchScreen";
 import SeasonSide from "../pages/SeasonSide";
+import SessionPageScreen from "../pages/SessionPageScreen";
 
 const Drawer = createDrawerNavigator();
 const Stack = createNativeStackNavigator();
@@ -51,6 +52,7 @@ return(
       <Stack.Screen name="MovieDetails" component={MovieScreen} options={{ headerShown: false }}/>
       <Stack.Screen name="Search" component={SearchScreen} options={{ headerShown: false }}/>
       <Stack.Screen name="SeasonSide" component={SeasonSide} options={{ headerShown: false }}/>
+      <Stack.Screen name="SessionPage" component={SessionPageScreen} options={{ headerShown: false }}/>
     </Stack.Navigator>
 
 )

@@ -30,7 +30,12 @@ const SeasonSide = ({ route }) => {
   }, []);
 
   const renderEpisodeItem = ({ item }) => (
-    <View className="flex-1 m-2 rounded-lg shadow-md ">
+    <TouchableOpacity
+      className="flex-1 m-2 rounded-lg shadow-md "
+      onPress={() =>
+        navigation.navigate("SessionPage",{item:item})
+      }
+    >
       <Image source={{ uri: poster }} className="w-full h-40 rounded-t-lg" />
       <Text
         className="text-lg font-semibold mt-2 text-center"
@@ -38,7 +43,7 @@ const SeasonSide = ({ route }) => {
       >
         {item.Title}
       </Text>
-    </View>
+    </TouchableOpacity>
   );
 
   return (
