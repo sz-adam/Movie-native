@@ -75,7 +75,6 @@ const DrawerNavigator = () => {
           headerTitle: (props) => <CustomHeaderFavoritesTitle {...props} />,
         }}
       />
-     
     </Drawer.Navigator>
   );
 };
@@ -83,8 +82,20 @@ const DrawerNavigator = () => {
 const Navigation = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Home" component={DrawerNavigator} />
+      <Stack.Navigator
+        screenOptions={{
+          headerStyle: {
+            backgroundColor: GlobalStyles.colors.gray500,           
+          },
+          headerTintColor: GlobalStyles.colors.primary50,  
+          headerTitle: ''
+        }}
+      >
+        <Stack.Screen
+          name="Home"
+          component={DrawerNavigator}
+          options={{ headerShown: false }}
+        />
         <Stack.Screen name="MovieDetails" component={MovieScreen} />
         <Stack.Screen name="Search" component={SearchScreen} />
         <Stack.Screen name="SeasonSide" component={SeasonSide} />
