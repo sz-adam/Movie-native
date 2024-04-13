@@ -98,6 +98,7 @@ export default function MovieScreen({ route }) {
             <Season
               totalSeasons={dataDetails.totalSeasons}
               poster={dataDetails.Poster}
+              title={dataDetails.Title}
             />
           </View>
         </View>

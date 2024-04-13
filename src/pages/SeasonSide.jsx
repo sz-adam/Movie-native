@@ -10,15 +10,14 @@ import { useNavigation } from "@react-navigation/native";
 
 const SeasonSide = ({ route }) => {
   const navigation = useNavigation();
-
-  const { season, poster } = route.params;
+  const { season, poster,title } = route.params;
   const [seasonSide, setSeasonSide] = useState([]);
 
   useEffect(() => {
     const fetchDetails = async () => {
       try {
         const details = await axios.get(
-          `${API_URL}${API_KEY}&season=${season}&t=Arrow`
+          `${API_URL}${API_KEY}&season=${season}&t=${title}`
         );
         setSeasonSide(details.data.Episodes);
       } catch (error) {
