@@ -6,7 +6,6 @@ import { API_URL } from "@env";
 import { API_KEY } from "@env";
 import { GlobalStyles } from "../constans/styles";
 import Icon from "react-native-vector-icons/AntDesign";
-import Header from "../components/Header";
 
 
 const SessionPageScreen = ({ route }) => {
@@ -33,8 +32,7 @@ const SessionPageScreen = ({ route }) => {
     <View
     className="flex-1"
     style={{ backgroundColor: GlobalStyles.colors.gray500 }}
-  >
-  <Header dataDetails={episod}/>
+  >  
     <Image
       sharedTransitionTag="sharedTag"
       style={{ width: width, height: width }}

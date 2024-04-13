@@ -2,7 +2,6 @@ import { useState } from "react";
 import { View, Text, Dimensions, Image, TouchableOpacity } from "react-native";
 import Animated, { useSharedValue } from "react-native-reanimated";
 import Carousel from "react-native-reanimated-carousel";
-import Icon from "react-native-vector-icons/AntDesign";
 
 import { useNavigation } from "@react-navigation/native";
 import { GlobalStyles } from "../constans/styles";
@@ -56,7 +55,6 @@ const MovieCarousel = ({ data }) => {
                 className="w-full aspect-square "
                 style={{ height: undefined }}
               />
-              {/**<Text className="absolute right-3 top-1"><Icon name="hearto" size={30} /> <Icon name="heart" color={GlobalStyles.colors.red500} size={30} /> </Text> */}
               <View
                 className="w-full absolute bottom-0 p-3 "
                 style={{

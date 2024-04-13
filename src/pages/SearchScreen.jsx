@@ -1,34 +1,17 @@
-import { View, Text, TouchableOpacity, FlatList } from "react-native";
+import { View, FlatList } from "react-native";
 import React, { useState } from "react";
-import Icon from "react-native-vector-icons/Ionicons";
-import { useNavigation } from "@react-navigation/native";
 import { GlobalStyles } from "../constans/styles";
 import SearchInput from "../components/SearchInput";
 import DataCard from "../components/DataCard";
 
 const Search = () => {
-  const navigation = useNavigation();
   const [searchData, setSearchData] = useState([]);
 
   return (
     <View
       className="flex-1 "
       style={{ backgroundColor: GlobalStyles.colors.gray500 }}
-    >
-      <View className="flex-row ">
-        <TouchableOpacity
-          className="bg-white rounded-xl w-8 m-2 flex justify-center items-center"
-          onPress={() => navigation.goBack()}
-        >
-          <Icon name="arrow-back" size={30} />
-        </TouchableOpacity>
-        <Text
-          className="mt-2 text-2xl font-bold text-center flex-1"
-          style={{ color: GlobalStyles.colors.red500 }}
-        >
-          S<Text style={{ color: GlobalStyles.colors.primary50 }}>earch</Text>
-        </Text>
-      </View>
+    >    
       <SearchInput setSearchData={setSearchData} />
       <FlatList
         data={searchData}

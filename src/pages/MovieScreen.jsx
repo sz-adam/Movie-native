@@ -6,7 +6,6 @@ import {
   ScrollView,
 } from "react-native";
 import React, { useEffect, useState } from "react";
-import Header from "../components/Header";
 import axios from "axios";
 import Icon from "react-native-vector-icons/AntDesign";
 
@@ -40,7 +39,6 @@ export default function MovieScreen({ route }) {
       className="flex-1"
       style={{ backgroundColor: GlobalStyles.colors.gray500 }}
     >
-      <Header dataDetails={dataDetails} />
       <Image
         sharedTransitionTag="sharedTag"
         style={{ width: width, height: width }}

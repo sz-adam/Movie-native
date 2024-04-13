@@ -4,8 +4,7 @@ import { ScrollView } from "react-native-gesture-handler";
 import { GlobalStyles } from "../constans/styles";
 import { useNavigation } from "@react-navigation/native";
 
-const Season = ({ totalSeasons, poster,title }) => {
-
+const Season = ({ totalSeasons, poster, title }) => {
   const seasonsArray = Array.from(
     { length: totalSeasons },
     (_, index) => index + 1
@@ -27,7 +26,7 @@ const Season = ({ totalSeasons, poster,title }) => {
             navigation.navigate("SeasonSide", {
               season: season,
               poster: poster,
-              title:title
+              title: title,
             })
           }
         >

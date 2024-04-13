@@ -1,5 +1,5 @@
 import { createDrawerNavigator } from "@react-navigation/drawer";
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import HomeScreen from "../pages/HomeScreen";
 import FavoriteScreen from "../pages/FavoriteScreen";
 import { NavigationContainer } from "@react-navigation/native";
@@ -12,7 +12,6 @@ import SessionPageScreen from "../pages/SessionPageScreen";
 
 const Drawer = createDrawerNavigator();
 const Stack = createNativeStackNavigator();
-
 
 const CustomHeaderMovieTitle = () => {
   return (
@@ -44,54 +43,53 @@ const CustomHeaderFavoritesTitle = () => {
   );
 };
 
-const StackNavigator=()=>{
-return(
-
-    <Stack.Navigator >
-    <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false }}/>
-      <Stack.Screen name="MovieDetails" component={MovieScreen} options={{ headerShown: false }}/>
-      <Stack.Screen name="Search" component={SearchScreen} options={{ headerShown: false }}/>
-      <Stack.Screen name="SeasonSide" component={SeasonSide} options={{ headerShown: false }}/>
-      <Stack.Screen name="SessionPage" component={SessionPageScreen} options={{ headerShown: false }}/>
-    </Stack.Navigator>
-
-)
-}
+const DrawerNavigator = () => {
+  return (
+    <Drawer.Navigator
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: GlobalStyles.colors.gray500,
+        },
+        headerTitleAlign: "center",
+        headerTintColor: GlobalStyles.colors.primary50,
+        headerTitleStyle: {
+          fontWeight: "bold",
+        },
+        drawerContentStyle: { backgroundColor: GlobalStyles.colors.gray500 },
+        drawerInactiveTintColor: GlobalStyles.colors.primary50,
+        drawerActiveBackgroundColor: GlobalStyles.colors.blue500,
+        drawerActiveTintColor: GlobalStyles.colors.accent500,
+      }}
+    >
+      <Drawer.Screen
+        name="Movie"
+        component={HomeScreen}
+        options={{
+          headerTitle: (props) => <CustomHeaderMovieTitle {...props} />,
+        }}
+      />
+      <Drawer.Screen
+        name="Favorites"
+        component={FavoriteScreen}
+        options={{
+          headerTitle: (props) => <CustomHeaderFavoritesTitle {...props} />,
+        }}
+      />
+     
+    </Drawer.Navigator>
+  );
+};
 
 const Navigation = () => {
   return (
     <NavigationContainer>
-      <Drawer.Navigator
-        screenOptions={{
-          headerStyle: {
-            backgroundColor: GlobalStyles.colors.gray500,
-          },
-          headerTitleAlign: "center",
-          headerTintColor: GlobalStyles.colors.primary50,
-          headerTitleStyle: {
-            fontWeight: "bold",
-          },
-          drawerContentStyle: { backgroundColor: GlobalStyles.colors.gray500 },
-          drawerInactiveTintColor: GlobalStyles.colors.primary50,
-          drawerActiveBackgroundColor: GlobalStyles.colors.blue500,
-          drawerActiveTintColor: GlobalStyles.colors.accent500,
-        }}
-      >
-        <Drawer.Screen
-          name="Movie"
-          component={StackNavigator}
-          options={{
-            headerTitle: (props) => <CustomHeaderMovieTitle {...props} />,
-          }}
-        />
-        <Drawer.Screen
-          name="Favorites"
-          component={FavoriteScreen}
-          options={{
-            headerTitle: (props) => <CustomHeaderFavoritesTitle {...props} />,
-          }}
-        />
-      </Drawer.Navigator>
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={DrawerNavigator} />
+        <Stack.Screen name="MovieDetails" component={MovieScreen} />
+        <Stack.Screen name="Search" component={SearchScreen} />
+        <Stack.Screen name="SeasonSide" component={SeasonSide} />
+        <Stack.Screen name="SessionPage" component={SessionPageScreen} />
+      </Stack.Navigator>
     </NavigationContainer>
   );
 };

@@ -1,8 +1,7 @@
-import { View, Text, FlatList, TouchableOpacity, Image } from "react-native";
+import { View, Text, TouchableOpacity, Image } from "react-native";
 import React from "react";
 import { GlobalStyles } from "../constans/styles";
 import { useNavigation } from "@react-navigation/native";
-import Animated from "react-native-reanimated";
 
 const DataCard = ({ item }) => {
   const navigation = useNavigation();
@@ -13,13 +12,11 @@ const DataCard = ({ item }) => {
       className="flex-1 justify-center items-center m-3"
     >
       <View>
-        <Animated.Image
+        <Image
           source={{ uri: item.Poster }}
           className="w-full aspect-square m-3 rounded-2xl"
           style={{ height: undefined }}
-          sharedTransitionTag={`Poster-${item.imdbID}`}
         />
-        {/**<Text className="absolute right-3 top-1"><Icon name="hearto" size={30} /> <Icon name="heart" color={GlobalStyles.colors.red500} size={30} /> </Text> */}
         <View
           className="w-full absolute bottom-0 m-3 p-1 rounded-b-2xl"
           style={{
