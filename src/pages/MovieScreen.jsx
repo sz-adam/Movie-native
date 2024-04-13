@@ -1,5 +1,4 @@
 import {
-  Image,
   Text,
   View,
   useWindowDimensions,
@@ -17,6 +16,8 @@ import { GlobalStyles } from "../constans/styles";
 import Season from "../components/Season";
 import { useFavoritesContext } from "../context/FavoritesContext";
 import HeaderRightButton from "../components/HeaderRightButton";
+import Animated, {FadeInUp,FadeInRight } from "react-native-reanimated";
+
 
 export default function MovieScreen({ route, navigation }) {
   const { item } = route.params;
@@ -52,17 +53,17 @@ export default function MovieScreen({ route, navigation }) {
   }, []);
 
   return (
-    <View
+    <View   
       className="flex-1"
       style={{ backgroundColor: GlobalStyles.colors.gray500 }}
     >
-      <Image
-        sharedTransitionTag="sharedTag"
+      <Animated.Image        
         style={{ width: width, height: width }}
-        source={{ uri: dataDetails.Poster }}
+        source={{ uri: item.Poster }}
+        entering={FadeInRight.duration(1000)}
       />
       <ScrollView>
-        <View>
+        <Animated.View entering={FadeInUp.duration(800)}>
           <Text className="color-white text-center text-2xl py-2">
             {dataDetails.Title}
           </Text>
@@ -116,7 +117,7 @@ export default function MovieScreen({ route, navigation }) {
               title={dataDetails.Title}
             />
           </View>
-        </View>
+        </Animated.View>
       </ScrollView>
     </View>
   );

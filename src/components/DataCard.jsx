@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, Image } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import React from "react";
 import { GlobalStyles } from "../constans/styles";
 import { useNavigation } from "@react-navigation/native";
@@ -13,10 +13,10 @@ const DataCard = ({ item }) => {
       className="flex-1 justify-center items-center m-3"
     >
       <Animated.View entering={FadeInDown.delay(400)}>
-        <Image
+        <Animated.Image
           source={{ uri: item.Poster }}
           className="w-full aspect-square m-3 rounded-2xl"
-          style={{ height: undefined }}
+          style={{ height: undefined }}        
         />
         <View
           className="w-full absolute bottom-0 m-3 p-1 rounded-b-2xl"

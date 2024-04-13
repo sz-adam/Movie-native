@@ -14,6 +14,8 @@ import { GlobalStyles } from "../constans/styles";
 import Icon from "react-native-vector-icons/AntDesign";
 import HeaderRightButton from "../components/HeaderRightButton";
 import { useFavoritesContext } from "../context/FavoritesContext";
+import Animated, {FadeInUp,FadeInRight } from "react-native-reanimated";
+
 
 const SessionPageScreen = ({ route, navigation }) => {
   const { item } = route.params;
@@ -53,13 +55,13 @@ const SessionPageScreen = ({ route, navigation }) => {
       className="flex-1"
       style={{ backgroundColor: GlobalStyles.colors.gray500 }}
     >
-      <Image
-        sharedTransitionTag="sharedTag"
+      <Animated.Image 
+         entering={FadeInRight.duration(1000)}
         style={{ width: width, height: width }}
         source={{ uri: episod.Poster }}
       />
       <ScrollView>
-        <View>
+        <Animated.View entering={FadeInUp.duration(800)}>
           <Text className="color-white text-center text-2xl py-2">
             {episod?.Title}
           </Text>
@@ -94,7 +96,7 @@ const SessionPageScreen = ({ route, navigation }) => {
               <Text className="color-white text-center"> {episod?.Plot} </Text>
             </View>
           </View>
-        </View>
+        </Animated.View>
       </ScrollView>
     </View>
   );
