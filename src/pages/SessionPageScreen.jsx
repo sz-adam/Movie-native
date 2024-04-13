@@ -14,8 +14,6 @@ const SessionPageScreen = ({ route }) => {
   const [episod, setEpisod] =useState("")
   const { width } = useWindowDimensions();
 
-  console.log(item);
-
   const imdbID = item?.imdbID;
 
   useEffect(() => {
