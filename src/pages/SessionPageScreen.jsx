@@ -1,19 +1,39 @@
-import { View, Text, Image, ScrollView, useWindowDimensions } from "react-native";
-import React, { useEffect, useState } from "react";
+import {
+  View,
+  Text,
+  Image,
+  ScrollView,
+  useWindowDimensions,
+} from "react-native";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import axios from "axios";
 
 import { API_URL } from "@env";
 import { API_KEY } from "@env";
 import { GlobalStyles } from "../constans/styles";
 import Icon from "react-native-vector-icons/AntDesign";
+import HeaderRightButton from "../components/HeaderRightButton";
+import { useFavoritesContext } from "../context/FavoritesContext";
 
-
-const SessionPageScreen = ({ route }) => {
+const SessionPageScreen = ({ route, navigation }) => {
   const { item } = route.params;
-  const [episod, setEpisod] =useState("")
+  const [episod, setEpisod] = useState("");
   const { width } = useWindowDimensions();
+  const { addFavorite, isFavorite, removeFavorite } = useFavoritesContext();
 
   const imdbID = item?.imdbID;
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerRight: () => (
+        <HeaderRightButton
+          isFavorite={isFavorite(episod.imdbID)}
+          AddFavorite={() => addFavorite(episod)}
+          RemoveFavorite={() => removeFavorite(episod.imdbID)}
+        />
+      ),
+    });
+  }, [navigation, addFavorite, removeFavorite, isFavorite, episod]);
 
   useEffect(() => {
     const fetchDetails = async () => {
@@ -30,58 +50,53 @@ const SessionPageScreen = ({ route }) => {
 
   return (
     <View
-    className="flex-1"
-    style={{ backgroundColor: GlobalStyles.colors.gray500 }}
-  >  
-    <Image
-      sharedTransitionTag="sharedTag"
-      style={{ width: width, height: width }}
-      source={{ uri: episod.Poster }}
-    />
-    <ScrollView>
-      <View>
-        <Text className="color-white text-center text-2xl py-2">
-          {episod?.Title}
-        </Text>
+      className="flex-1"
+      style={{ backgroundColor: GlobalStyles.colors.gray500 }}
+    >
+      <Image
+        sharedTransitionTag="sharedTag"
+        style={{ width: width, height: width }}
+        source={{ uri: episod.Poster }}
+      />
+      <ScrollView>
         <View>
-          <View className="color-white py-2">
-            <Text className="color-white text-center">
-              Released : {episod?.Year} - {episod?.Runtime}
-            </Text>
+          <Text className="color-white text-center text-2xl py-2">
+            {episod?.Title}
+          </Text>
+          <View>
+            <View className="color-white py-2">
+              <Text className="color-white text-center">
+                Released : {episod?.Year} - {episod?.Runtime}
+              </Text>
+            </View>
+            <View className="color-white py-2">
+              <Text className="color-white text-center">{episod?.Genre} </Text>
+            </View>
+            <View className="color-white  py-2">
+              <Text className="color-white text-center">
+                Language : {episod?.Language}{" "}
+              </Text>
+            </View>
+            <View className="color-white  py-2 ">
+              <Text className="color-white text-center">
+                {" "}
+                {episod?.Actors}{" "}
+              </Text>
+            </View>
+            <View className="color-white  py-2">
+              <Text className="color-white text-center">
+                <Icon name="star" color={GlobalStyles.colors.accent500} />{" "}
+                {episod?.imdbRating}{" "}
+              </Text>
+            </View>
+
+            <View className="color-white  py-2 m-5">
+              <Text className="color-white text-center"> {episod?.Plot} </Text>
+            </View>
           </View>
-          <View className="color-white py-2">
-            <Text className="color-white text-center">
-             {episod?.Genre}{" "}
-            </Text>
-          </View>
-          <View className="color-white  py-2">
-            <Text className="color-white text-center">
-              Language : {episod?.Language}{" "}
-            </Text>
-          </View>
-          <View className="color-white  py-2 ">
-            <Text className="color-white text-center">
-              {" "}
-              {episod?.Actors}{" "}
-            </Text>
-          </View>
-          <View className="color-white  py-2">
-            <Text className="color-white text-center">
-              <Icon name="star" color={GlobalStyles.colors.accent500} />{" "}
-              {episod?.imdbRating}{" "}
-            </Text>
-          </View>
-         
-          <View className="color-white  py-2 m-5">
-            <Text className="color-white text-center">
-              {" "}
-              {episod?.Plot}{" "}
-            </Text>
-          </View>         
         </View>
-      </View>
-    </ScrollView>
-  </View>
+      </ScrollView>
+    </View>
   );
 };
 

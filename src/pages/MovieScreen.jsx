@@ -5,21 +5,38 @@ import {
   useWindowDimensions,
   ScrollView,
 } from "react-native";
+import { useLayoutEffect } from "react";
+
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import Icon from "react-native-vector-icons/AntDesign";
+import Icon from "react-native-vector-icons/Ionicons";
 
 import { API_URL } from "@env";
 import { API_KEY } from "@env";
 import { GlobalStyles } from "../constans/styles";
 import Season from "../components/Season";
+import { useFavoritesContext } from "../context/FavoritesContext";
+import HeaderRightButton from "../components/HeaderRightButton";
 
-export default function MovieScreen({ route }) {
+export default function MovieScreen({ route, navigation }) {
   const { item } = route.params;
   const { width } = useWindowDimensions();
   const [dataDetails, setDataDetails] = useState("");
+  const { addFavorite, isFavorite, removeFavorite } = useFavoritesContext();
 
   const imdbID = item?.imdbID;
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerRight: () => (
+        <HeaderRightButton
+          isFavorite={isFavorite(dataDetails.imdbID)}
+          AddFavorite={() => addFavorite(dataDetails)}
+          RemoveFavorite={() => removeFavorite(dataDetails.imdbID)}
+        />
+      ),
+    });
+  }, [navigation, addFavorite, removeFavorite, isFavorite, dataDetails]);
 
   useEffect(() => {
     const fetchDetails = async () => {
