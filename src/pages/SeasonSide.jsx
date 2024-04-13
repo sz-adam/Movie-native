@@ -34,7 +34,7 @@ const SeasonSide = ({ route }) => {
       className="flex-1 m-2 rounded-lg shadow-md "
       onPress={() => navigation.navigate("SessionPage", { item: item })}
     >
-      <Animated.View entering={FadeInDown.delay(400 )}>
+      <Animated.View entering={FadeInDown.delay(400)}>
         <Image source={{ uri: poster }} className="w-full h-40 rounded-t-lg" />
         <Text
           className="text-lg font-semibold mt-2 text-center"
@@ -51,14 +51,6 @@ const SeasonSide = ({ route }) => {
       className="flex-1"
       style={{ backgroundColor: GlobalStyles.colors.gray500 }}
     >
-      <View className="m-2">
-        <TouchableOpacity
-          onPress={() => navigation.goBack()}
-          className="bg-white rounded-xl w-8 flex justify-center items-center"
-        >
-          <Icon name="arrow-back" size={30} />
-        </TouchableOpacity>
-      </View>
       <FlatList
         data={seasonSide}
         renderItem={renderEpisodeItem}
