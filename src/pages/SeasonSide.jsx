@@ -7,10 +7,11 @@ import { API_KEY } from "@env";
 import { GlobalStyles } from "../constans/styles";
 import Icon from "react-native-vector-icons/Ionicons";
 import { useNavigation } from "@react-navigation/native";
+import Animated, { FadeInDown } from "react-native-reanimated";
 
 const SeasonSide = ({ route }) => {
   const navigation = useNavigation();
-  const { season, poster,title } = route.params;
+  const { season, poster, title } = route.params;
   const [seasonSide, setSeasonSide] = useState([]);
 
   useEffect(() => {
@@ -31,17 +32,17 @@ const SeasonSide = ({ route }) => {
   const renderEpisodeItem = ({ item }) => (
     <TouchableOpacity
       className="flex-1 m-2 rounded-lg shadow-md "
-      onPress={() =>
-        navigation.navigate("SessionPage",{item:item})
-      }
+      onPress={() => navigation.navigate("SessionPage", { item: item })}
     >
-      <Image source={{ uri: poster }} className="w-full h-40 rounded-t-lg" />
-      <Text
-        className="text-lg font-semibold mt-2 text-center"
-        style={{ color: GlobalStyles.colors.primary50 }}
-      >
-        {item.Title}
-      </Text>
+      <Animated.View entering={FadeInDown.delay(400 )}>
+        <Image source={{ uri: poster }} className="w-full h-40 rounded-t-lg" />
+        <Text
+          className="text-lg font-semibold mt-2 text-center"
+          style={{ color: GlobalStyles.colors.primary50 }}
+        >
+          {item.Title}
+        </Text>
+      </Animated.View>
     </TouchableOpacity>
   );
 
