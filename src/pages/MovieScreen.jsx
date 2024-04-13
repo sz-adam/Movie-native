@@ -13,6 +13,7 @@ import Icon from "react-native-vector-icons/AntDesign";
 import { API_URL } from "@env";
 import { API_KEY } from "@env";
 import { GlobalStyles } from "../constans/styles";
+import Season from "../components/Season";
 
 export default function MovieScreen({ route }) {
   const { item } = route.params;
@@ -39,7 +40,7 @@ export default function MovieScreen({ route }) {
       className="flex-1"
       style={{ backgroundColor: GlobalStyles.colors.gray500 }}
     >
-      <Header dataDetails={dataDetails}/>
+      <Header dataDetails={dataDetails} />
       <Image
         sharedTransitionTag="sharedTag"
         style={{ width: width, height: width }}
@@ -63,7 +64,7 @@ export default function MovieScreen({ route }) {
             </View>
             <View className="color-white  py-2">
               <Text className="color-white text-center">
-              Language : {dataDetails.Language}{" "}
+                Language : {dataDetails.Language}{" "}
               </Text>
             </View>
             <View className="color-white  py-2 ">
@@ -78,20 +79,26 @@ export default function MovieScreen({ route }) {
                 {dataDetails.imdbRating}{" "}
               </Text>
             </View>
-           {dataDetails.Type ==="series" ? (
-             <View className="color-white  py-2 ">
-             <Text className="color-white text-center">
-               {" "}
-               Season : {dataDetails.totalSeasons}{" "}
-             </Text>
-           </View>
-           ): ""}
+            {dataDetails.Type === "series" ? (
+              <View className="color-white  py-2 ">
+                <Text className="color-white text-center">
+                  {" "}
+                  Season : {dataDetails.totalSeasons}{" "}
+                </Text>
+              </View>
+            ) : (
+              ""
+            )}
             <View className="color-white  py-2 m-5">
               <Text className="color-white text-center">
                 {" "}
                 {dataDetails.Plot}{" "}
               </Text>
             </View>
+            <Season
+              totalSeasons={dataDetails.totalSeasons}
+              poster={dataDetails.Poster}
+            />
           </View>
         </View>
       </ScrollView>
