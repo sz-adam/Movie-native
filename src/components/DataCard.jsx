@@ -2,6 +2,7 @@ import { View, Text, TouchableOpacity, Image } from "react-native";
 import React from "react";
 import { GlobalStyles } from "../constans/styles";
 import { useNavigation } from "@react-navigation/native";
+import Animated, { FadeInDown } from "react-native-reanimated";
 
 const DataCard = ({ item }) => {
   const navigation = useNavigation();
@@ -11,7 +12,7 @@ const DataCard = ({ item }) => {
       onPress={() => navigation.navigate("MovieDetails", { item: item })}
       className="flex-1 justify-center items-center m-3"
     >
-      <View>
+      <Animated.View entering={FadeInDown.delay(400)}>
         <Image
           source={{ uri: item.Poster }}
           className="w-full aspect-square m-3 rounded-2xl"
@@ -30,7 +31,7 @@ const DataCard = ({ item }) => {
             </Text>
           </View>
         </View>
-      </View>
+      </Animated.View>
     </TouchableOpacity>
   );
 };
