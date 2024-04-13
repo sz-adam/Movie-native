@@ -17,14 +17,10 @@ const Search = () => {
     >
       <View className="flex-row ">
         <TouchableOpacity
-          className="mt-2 pl-2"
+          className="bg-white rounded-xl w-8 m-2 flex justify-center items-center"
           onPress={() => navigation.goBack()}
         >
-          <Icon
-            name="arrow-back"
-            color={GlobalStyles.colors.primary50}
-            size={30}
-          />
+          <Icon name="arrow-back" size={30} />
         </TouchableOpacity>
         <Text
           className="mt-2 text-2xl font-bold text-center flex-1"

@@ -15,8 +15,11 @@ const Header = ({ dataDetails }) => {
 
   return (
     <View className="absolute z-10 w-full flex-row justify-between items-center my-2 px-2">
-      <TouchableOpacity onPress={() => navigation.goBack()}>
-        <Icon name="arrow-back" color={GlobalStyles.colors.blue500} size={30} />
+      <TouchableOpacity
+        onPress={() => navigation.goBack()}
+        className="bg-white rounded-xl w-8 flex justify-center items-center"
+      >
+        <Icon name="arrow-back" size={30} />
       </TouchableOpacity>
       <TouchableOpacity onPress={handleAddFavorite}>
         <Icon
