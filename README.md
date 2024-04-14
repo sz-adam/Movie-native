@@ -18,3 +18,7 @@ This project is an extension of my first React project, now developed into a Rea
 - expo-notifications
 - react-native-vector-icons
 - react-native-reanimated
+
+# Videos
+
+[presentation](https://www.youtube.com/watch?v=ZSIY7SHp80w)
