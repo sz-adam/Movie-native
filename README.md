@@ -9,12 +9,12 @@ This project is an extension of my first React project, now developed into a Rea
 
 ## Main Packages Used
 
--react-native-async-storage
--react-drawer navigation
--react-stack-navigation
--axios
--nativewind
--react-native-dotenv
--expo-notifications
--react-native-vector-icons
--react-native-reanimated
+- react-native-async-storage
+- react-drawer navigation
+- react-stack-navigation
+- axios
+- nativewind
+- react-native-dotenv
+- expo-notifications
+- react-native-vector-icons
+- react-native-reanimated
