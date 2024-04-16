@@ -17,6 +17,7 @@ import Season from "../components/Season";
 import { useFavoritesContext } from "../context/FavoritesContext";
 import HeaderRightButton from "../components/HeaderRightButton";
 import Animated, {FadeInUp,FadeInRight } from "react-native-reanimated";
+import ShareMenu from "../components/ShareMenu";
 
 
 export default function MovieScreen({ route, navigation }) {
@@ -116,6 +117,7 @@ export default function MovieScreen({ route, navigation }) {
               poster={dataDetails.Poster}
               title={dataDetails.Title}
             />
+            <ShareMenu dataDetails={dataDetails}/>
           </View>
         </Animated.View>
       </ScrollView>
